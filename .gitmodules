@@ -1,0 +1,3 @@
+[submodule "external/hardware"]
+	path = external/hardware-regs
+	url = https://github.com/jmarcelocruz/rpi-pico-hardware-regs.git
