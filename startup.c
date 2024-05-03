@@ -68,11 +68,15 @@ __attribute__((section(".stage2"))) void _reset(void) {
     main();
 }
 
-__attribute__((weak)) void NMI_Handler(void);
-__attribute__((weak)) void HardFault_Handler(void);
-__attribute__((weak)) void SVCall_Handler(void);
-__attribute__((weak)) void PendSV_Handler(void);
-__attribute__((weak)) void SysTick_Handler(void);
+static void Default_Handler(void) {
+    ;
+}
+
+__attribute__((weak, alias("Default_Handler"))) void NMI_Handler(void);
+__attribute__((weak, alias("Default_Handler"))) void HardFault_Handler(void);
+__attribute__((weak, alias("Default_Handler"))) void SVCall_Handler(void);
+__attribute__((weak, alias("Default_Handler"))) void PendSV_Handler(void);
+__attribute__((weak, alias("Default_Handler"))) void SysTick_Handler(void);
 
 __attribute__((weak)) void Timer0_IRQ_Handler(void);
 __attribute__((weak)) void Timer1_IRQ_Handler(void);
