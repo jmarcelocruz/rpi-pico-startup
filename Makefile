@@ -1,4 +1,4 @@
-CFLAGS = -mcpu=cortex-m0plus -mthumb -Iexternal/hardware-regs/include ${EXTRA_CFLAGS}
+CFLAGS = -mcpu=cortex-m0plus -mthumb -ffreestanding -Iexternal/hardware-regs/include ${EXTRA_CFLAGS}
 
 SOURCES = startup.c
 OBJS = $(patsubst %.c,%.o,${SOURCES})
