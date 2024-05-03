@@ -12,14 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+MAJOR = 1
+MINOR = 0
+PATCH = 0
+
 CFLAGS = -mcpu=cortex-m0plus -mthumb -ffreestanding -Iexternal/hardware-regs/include ${EXTRA_CFLAGS}
 
 SOURCES = startup.c
 OBJS = $(patsubst %.c,%.o,${SOURCES})
+
+dist: rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}.tar.gz
+rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}.tar.gz: ${OBJS} rpi-pico.ld LICENSE
+	mkdir -p rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}/licenses/
+	ln ${OBJS} rpi-pico.ld rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}/
+	ln LICENSE rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}/licenses/
+	tar -cv rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}/ | gzip > $@
+	rm -r rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}/
 
 ${OBJS}: %.o: ${SOURCES}
 	${CC} $^ -c ${CFLAGS}
 
 .PHONY: clean
 clean:
-	rm -f ${OBJS}
+	rm -f ${OBJS} rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}.tar.gz
