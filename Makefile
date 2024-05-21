@@ -12,26 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-MAJOR = 1
-MINOR = 0
-PATCH = 0
+VERSION_MAJOR = 1
+VERSION_MINOR = 0
+VERSION_PATCH = 0
 
 CFLAGS = -mcpu=cortex-m0plus -mthumb -ffreestanding -Iexternal/rpi-pico-hardware-regs-1.0.1/include ${EXTRA_CFLAGS}
 
 SOURCES = startup.c
 OBJS = $(patsubst %.c,%.o,${SOURCES})
 
-dist: rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}.tar.gz
-rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}.tar.gz: ${OBJS} rpi-pico.ld LICENSE
-	mkdir -p rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}/licenses/
-	ln ${OBJS} rpi-pico.ld rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}/
-	ln LICENSE rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}/licenses/
-	tar -cv rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}/ | gzip > $@
-	rm -r rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}/
+dist: rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.tar.gz
+rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.tar.gz: ${OBJS} rpi-pico.ld LICENSE
+	mkdir -p rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/licenses/
+	ln ${OBJS} rpi-pico.ld rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/
+	ln LICENSE rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/licenses/
+	tar -cv rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/ | gzip > $@
+	rm -r rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/
 
 ${OBJS}: %.o: ${SOURCES}
 	${CC} $^ -c ${CFLAGS}
 
 .PHONY: clean
 clean:
-	rm -f ${OBJS} rpi-pico-startup-${MAJOR}.${MINOR}.${PATCH}.tar.gz
+	rm -f ${OBJS} rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.tar.gz
