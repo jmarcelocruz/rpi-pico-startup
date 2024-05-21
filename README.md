@@ -5,8 +5,8 @@ Generic Raspberry Pico startup code
 
 1. [Dependencies](#dependencies)
 2. [Build](#build)
-    a. [Compilation](#compilation)
-    b. [Distribution package](#distribution-package)
+   1. [Compilation](#compilation)
+   2. [Distribution package](#distribution-package)
 
 ### Dependencies
 Artifact               | Version | Repository
