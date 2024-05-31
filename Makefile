@@ -16,7 +16,7 @@ VERSION_MAJOR = 1
 VERSION_MINOR = 0
 VERSION_PATCH = 0
 
-CFLAGS = -mcpu=cortex-m0plus -mthumb -ffreestanding -Iexternal/rpi-pico-hardware-regs-1.0.1/include ${EXTRA_CFLAGS}
+CFLAGS = -mcpu=cortex-m0plus -mthumb -ffreestanding -Iexternal/rpi-pico-hardware-regs-1.1.0/include ${EXTRA_CFLAGS}
 
 SOURCES = startup.c syscalls.c
 OBJS = $(patsubst %.c,%.o,${SOURCES})

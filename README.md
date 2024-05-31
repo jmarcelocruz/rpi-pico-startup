@@ -11,7 +11,7 @@ Generic Raspberry Pico startup code
 ### Dependencies
 Artifact               | Version | Repository
 -----------------------|---------|-----------
-rpi-pico-hardware-regs | v1.0.1  | https://github.com/jmarcelocruz/rpi-pico-hardware-regs
+rpi-pico-hardware-regs | v1.1.0  | https://github.com/jmarcelocruz/rpi-pico-hardware-regs
 
 For each dependency, get the release artifact and extract it under `external/`.
 
