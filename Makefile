@@ -22,16 +22,19 @@ SOURCES = startup.c syscalls.c
 OBJS = $(patsubst %.c,%.o,${SOURCES})
 
 dist: rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.tar.gz
-rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.tar.gz: ${OBJS} rpi-pico.ld LICENSE
+rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.tar.gz: librpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.a rpi-pico.ld LICENSE
 	mkdir -p rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/licenses/
-	ln ${OBJS} rpi-pico.ld rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/
+	ln librpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.a rpi-pico.ld rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/
 	ln LICENSE rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/licenses/
 	tar -cv rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/ | gzip > $@
 	rm -r rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}/
+
+librpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.a: ${OBJS}
+	${AR} rcs $@ $^
 
 ${OBJS}: %.o: ${SOURCES}
 	${CC} $^ -c ${CFLAGS}
 
 .PHONY: clean
 clean:
-	rm -f ${OBJS} rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.tar.gz
+	rm -f ${OBJS} rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.a rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.tar.gz
