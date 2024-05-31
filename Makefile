@@ -18,7 +18,7 @@ VERSION_PATCH = 0
 
 CFLAGS = -mcpu=cortex-m0plus -mthumb -ffreestanding -Iexternal/rpi-pico-hardware-regs-1.0.1/include ${EXTRA_CFLAGS}
 
-SOURCES = startup.c
+SOURCES = startup.c syscalls.c
 OBJS = $(patsubst %.c,%.o,${SOURCES})
 
 dist: rpi-pico-startup-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.tar.gz

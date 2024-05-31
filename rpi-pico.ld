@@ -56,4 +56,5 @@ SECTIONS {
         . = ALIGN(4);
         _ebss = .;
     } > sram
+    _sheap = .;
 }
