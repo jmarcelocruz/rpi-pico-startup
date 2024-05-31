@@ -13,7 +13,7 @@
 # limitations under the License.
 
 VERSION_MAJOR = 1
-VERSION_MINOR = 0
+VERSION_MINOR = 1
 VERSION_PATCH = 0
 
 CFLAGS = -mcpu=cortex-m0plus -mthumb -ffreestanding -Iexternal/rpi-pico-hardware-regs-1.1.0/include ${EXTRA_CFLAGS}
